@@ -11,7 +11,16 @@ def escape_markdown(text): # экранирует markdown
 
 bot = telebot.TeleBot(token)
 
-users = {}
+connection = sqlite3.connect("users.db")
+cursor = connection.cursor()
+cursor.execute('''
+            CREATE TABLE IF NOT EXISTS Users (
+                id INTEGER PRIMARY KEY,
+                acces_level INTEGER,
+                points INTEGER  
+               )
+               ''')
+connection.commit()
 
 def botik():
     try:
