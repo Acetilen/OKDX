@@ -9,18 +9,29 @@ def escape_markdown(text): # экранирует markdown
     escape_chars = r'[]()~`>#+-=|{}.!'
     return re.sub(f'([{re.escape(escape_chars)}])', r'\\\1', text)
 
-bot = telebot.TeleBot(token)
+def make_a_db():
+    connection = sqlite3.connect("users.db")
+    cursor = connection.cursor()
+    cursor.execute('''
+                CREATE TABLE IF NOT EXISTS Users (
+                    id INTEGER PRIMARY KEY,
+                    acces_level INTEGER,
+                    points INTEGER  
+                )
+                ''')
+    connection.commit()
+    connection.close()
 
-connection = sqlite3.connect("users.db")
-cursor = connection.cursor()
-cursor.execute('''
-            CREATE TABLE IF NOT EXISTS Users (
-                id INTEGER PRIMARY KEY,
-                acces_level INTEGER,
-                points INTEGER  
-               )
-               ''')
-connection.commit()
+
+
+def db_add(id):
+    connection = sqlite3.connect("users.db")
+    cursor = connection.cursor()
+    cursor.execute()
+
+make_a_db()
+
+bot = telebot.TeleBot(token)
 
 def botik():
     try:
@@ -53,3 +64,5 @@ def botik():
         botik()
 
 botik()
+
+{user_id: (5, 8)}
