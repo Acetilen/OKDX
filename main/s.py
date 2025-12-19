@@ -30,7 +30,7 @@ def check_db(id):
         
     
 
-def db_add(id):
+def db_find_add(id):
     connection = sqlite3.connect("users.db")
     cursor = connection.cursor()
     if not check_db(id):
@@ -47,6 +47,6 @@ def db_add(id):
 
     
 print(check_db("123"))
-print(db_add("123"))
-print(db_add("123"))
+print(db_find_add("123"))
+print(db_find_add("123"))
 
